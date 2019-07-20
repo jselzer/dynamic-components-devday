@@ -20,10 +20,12 @@ export class ModalComponent implements AfterViewInit, OnDestroy {
 
   componentRef: ComponentRef<any>;
 
-  @ViewChild(InsertionDirective, {static: false}) // FIXME, can we do something about this
+  @ViewChild(InsertionDirective, {static: false})
   insertionPoint: InsertionDirective;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cd: ChangeDetectorRef) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cd: ChangeDetectorRef) {
+
+  }
 
   ngAfterViewInit(): void {
     this.loadChildComponent(this.childComponentType);

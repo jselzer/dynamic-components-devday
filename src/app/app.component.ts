@@ -12,6 +12,7 @@ export class AppComponent {
   constructor(private modalService: ModalService) { }
 
   openModal() {
-    this.modalService.open(ExampleComponent);
+    const exampleComponent = this.modalService.open(ExampleComponent).componentRef.instance;;
+    (exampleComponent as ExampleComponent).name = 'Jason';
   }
 }

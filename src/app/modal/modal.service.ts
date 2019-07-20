@@ -10,9 +10,10 @@ export class ModalService {
     private appRef: ApplicationRef
   ) { }
 
-  public open(componentType: Type<any>): void {
+  public open(componentType: Type<any>): ComponentRef<any> {
     const componentRef = this.appendModalToBody();
     componentRef.instance.childComponentType = componentType;
+    return componentRef;
   }
 
   private appendModalToBody(): ComponentRef<ModalComponent> {
