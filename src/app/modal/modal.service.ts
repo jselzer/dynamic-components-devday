@@ -1,4 +1,4 @@
-import {ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Injectable, Injector} from '@angular/core';
+import {ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector, Type} from '@angular/core';
 import {ModalComponent} from './modal.component';
 
 @Injectable()
@@ -10,16 +10,19 @@ export class ModalService {
     private appRef: ApplicationRef
   ) { }
 
-  public open(): void {
-    this.appendModalToBody();
+  public open(componentType: Type<any>): void {
+    const componentRef = this.appendModalToBody();
+    componentRef.instance.childComponentType = componentType;
   }
 
-  private appendModalToBody(): void {
+  private appendModalToBody(): ComponentRef<ModalComponent> {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
     const componentRef = componentFactory.create(this.injector);
     this.appRef.attachView(componentRef.hostView);
 
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     document.body.appendChild(domElem);
+
+    return componentRef;
   }
 }
