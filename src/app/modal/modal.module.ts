@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ModalComponent} from './modal.component';
+import {ModalService} from './modal.service';
 
 @NgModule({
   declarations: [ModalComponent],
@@ -10,6 +11,9 @@ import {ModalComponent} from './modal.component';
   exports: [
     ModalComponent
   ],
-  entryComponents: [ModalComponent]
+  entryComponents: [ModalComponent],
+  providers: [
+    ModalService
+  ]
 })
 export class ModalModule { }
