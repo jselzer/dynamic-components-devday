@@ -1,7 +1,6 @@
 import {ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector, Type} from '@angular/core';
 import {ModalComponent} from './modal.component';
 import {ModalConfig} from './modal.config';
-import {ModalInjector} from './modal.injector';
 
 @Injectable()
 export class ModalService {
