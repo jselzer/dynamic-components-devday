@@ -3,14 +3,16 @@ import {
   ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
-  ComponentRef, Inject,
+  ComponentRef, Inject, InjectionToken,
   OnDestroy,
   Type,
   ViewChild
 } from '@angular/core';
 import {InsertionDirective} from './insertion.directive';
 
-export enum ModalStyle {DIALOG, SLIDE_PANEL};
+export enum ModalStyle {DIALOG, SLIDE_PANEL}
+
+export const MODAL_STYLE_TOKEN = new InjectionToken<ModalStyle>("ModalStyle");
 
 @Component({
   selector: 'app-modal',
@@ -27,7 +29,7 @@ export class ModalComponent implements AfterViewInit, OnDestroy {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private cd: ChangeDetectorRef,
-              @Inject("modalStyle") private modalStyle: ModalStyle) {
+              @Inject(MODAL_STYLE_TOKEN) private modalStyle: ModalStyle) {
 
   }
 

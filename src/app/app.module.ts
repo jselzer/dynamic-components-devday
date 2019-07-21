@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {ModalModule} from './modal/modal.module';
 import {ExampleComponent} from './example/example.component';
-import {ModalStyle} from './modal/modal.component';
+import {MODAL_STYLE_TOKEN, ModalStyle} from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import {ModalStyle} from './modal/modal.component';
     ModalModule
   ],
   providers: [
-    {provide: 'modalStyle', useValue: ModalStyle.DIALOG}
+    {provide: MODAL_STYLE_TOKEN, useValue: ModalStyle.SLIDE_PANEL}
   ],
   bootstrap: [AppComponent],
   entryComponents: [
