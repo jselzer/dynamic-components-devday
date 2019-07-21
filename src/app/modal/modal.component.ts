@@ -3,12 +3,14 @@ import {
   ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
-  ComponentRef,
+  ComponentRef, Inject,
   OnDestroy,
   Type,
   ViewChild
 } from '@angular/core';
 import {InsertionDirective} from './insertion.directive';
+
+export enum ModalStyle {DIALOG, SLIDE_PANEL};
 
 @Component({
   selector: 'app-modal',
@@ -23,7 +25,9 @@ export class ModalComponent implements AfterViewInit, OnDestroy {
   @ViewChild(InsertionDirective, {static: false})
   insertionPoint: InsertionDirective;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cd: ChangeDetectorRef) {
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,
+              private cd: ChangeDetectorRef,
+              @Inject("modalStyle") private modalStyle: ModalStyle) {
 
   }
 
@@ -43,5 +47,9 @@ export class ModalComponent implements AfterViewInit, OnDestroy {
     const viewContainerRef = this.insertionPoint.viewContainerRef;
 
     this.componentRef = viewContainerRef.createComponent(componentFactory);
+  }
+
+  getModalStyleClass(): object {
+    return {modal: this.modalStyle === ModalStyle.DIALOG, slidepanel: this.modalStyle === ModalStyle.SLIDE_PANEL};
   }
 }

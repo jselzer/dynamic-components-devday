@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {ModalModule} from './modal/modal.module';
 import {ExampleComponent} from './example/example.component';
+import {ModalStyle} from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import {ExampleComponent} from './example/example.component';
     BrowserModule,
     ModalModule
   ],
-  providers: [],
+  providers: [
+    {provide: 'modalStyle', useValue: ModalStyle.DIALOG}
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     ExampleComponent
