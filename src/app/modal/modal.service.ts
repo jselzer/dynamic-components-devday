@@ -33,6 +33,9 @@ export class ModalService {
     const map = new WeakMap();
     map.set(ModalConfig, config);
 
-    return new ModalInjector(this.injector, map);
+    return Injector.create({
+        providers: [{provide: ModalConfig, useValue: config}],
+        parent: this.injector
+      });
   }
 }
