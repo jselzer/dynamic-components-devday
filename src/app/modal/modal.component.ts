@@ -1,10 +1,12 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
-  ComponentRef, Inject, InjectionToken,
+  ComponentRef,
+  Inject,
+  InjectionToken,
   OnDestroy,
+  OnInit,
   Type,
   ViewChild
 } from '@angular/core';
@@ -19,12 +21,12 @@ export const MODAL_STYLE_TOKEN = new InjectionToken<ModalStyle>("ModalStyle");
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent implements AfterViewInit, OnDestroy {
+export class ModalComponent implements OnInit, OnDestroy {
   childComponentType: Type<any>;
 
   componentRef: ComponentRef<any>;
 
-  @ViewChild(InsertionDirective, {static: false})
+  @ViewChild(InsertionDirective, {static: true})
   insertionPoint: InsertionDirective;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
@@ -33,9 +35,8 @@ export class ModalComponent implements AfterViewInit, OnDestroy {
 
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.loadChildComponent(this.childComponentType);
-    this.cd.detectChanges();
   }
 
   ngOnDestroy(): void {
